@@ -1,0 +1,5 @@
+.fondo {
+	-fx-background: #000046; /* fallback for old browsers */
+	-fx-background: linear-gradient(to right, #000046, #1cb5e0);
+	/* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
