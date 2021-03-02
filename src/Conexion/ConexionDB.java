@@ -1,5 +1,5 @@
 
-package semestre3tarea5.Conexion;
+package Conexion;
 
 import java.sql.Connection;
 import javax.swing.JOptionPane;
