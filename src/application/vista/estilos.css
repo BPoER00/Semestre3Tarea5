@@ -1,84 +1,92 @@
-
 /* ============== Fondo del registro ============== */
 .fondoRegistro {
-	-fx-background: #000046; 
-	-fx-background: linear-gradient(to right, #000046, #1cb5e0);
+   -fx-background: #000046;
+   -fx-background: linear-gradient(to right, #000046, #1cb5e0);
+}
+
+/* ============== Fondo de las consultas ============== */
+.fondoConsulta {
+	-fx-background: #0F2027;  /* fallback for old browsers */
+	-fx-background: linear-gradient(to right, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	
 }
 
 /* ============== Estilos del comboBox ============== */
 .combo-box-base:editable {
-	-fx-background-color: transparent;
-	-fx-text-fill: white;
- }
- 
- .combo-box .list-cell 
- {
-	 -fx-background-color: transparent;
-	 -fx-text-fill: white;
- }
- 
- .combo-box-base .text{
-	 -fx-prompt-text-fill: rgb(255, 255, 255);
-	 -fx-fill: rgb(255,255,255);
-	 -fx-background-color: transparent;
-	 -fx-font-size: 14;
- }
- 
- .combo-box .text-field {
-	 -fx-prompt-text-fill: rgba(255, 0, 0, 0.5) ;
- }
- 
- 
- .combo-box-popup .list-view 
- {
-	 -fx-background-color: #0CBABA, #26081C;
-	 -fx-background-insets: 0, 1;
-	 -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );
-	 -fx-fill: white;
- } 
- 
- .combo-box-popup .list-view .list-cell 
- {
-	 -fx-background-color: #0CBABA, #26081C;
-	 -fx-fill: white;
- }
- 
- .combo-box-popup .list-view .list-cell:filled:selected, .combo-box-popup .list-view .list-cell:filled:selected:hover 
- {    
-	 -fx-background-color: #A8247C;
- }
- 
- .combo-box-popup .list-view .list-cell:filled:hover 
- {
-	 -fx-background-color: #A8247C;
- }
- 
- .combo-box-base  
- {
-	 -fx-background-color: transparent;
-	 -fx-text-fill: white;
- }
- 
- .combo-box-base:editable .text-input {   
-	-fx-text-fill: inherit;
-	-fx-fill: white;
-	-fx-background-color: transparent;
-	-fx-prompt-text-fill: rgb(255, 255, 255);
-	-fx-font-size: 17;
- }
- 
- .combo-box > .arrow-button {
-	 -fx-background-color: transparent;
- }
+   -fx-background-color: transparent;
+   -fx-text-fill: white;
+}
 
- 
+.combo-box .list-cell {
+   -fx-background-color: transparent;
+   -fx-text-fill: white;
+}
+
+.combo-box-base .text {
+   -fx-prompt-text-fill: rgb(255, 255, 255);
+   -fx-fill: rgb(255, 255, 255);
+   -fx-background-color: transparent;
+   -fx-font-size: 14;
+}
+
+.combo-box .text-field {
+   -fx-prompt-text-fill: rgba(255, 0, 0, 0.5);
+}
+
+.combo-box-popup .list-view {
+   -fx-background-color: #0cbaba, #26081c;
+   -fx-background-insets: 0, 1;
+   -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.6), 8, 0, 0, 0);
+   -fx-fill: white;
+}
+
+.combo-box-popup .list-view .list-cell {
+   -fx-background-color: #0cbaba, #26081c;
+   -fx-fill: white;
+}
+
+.combo-box-popup .list-view .list-cell:filled:selected,
+.combo-box-popup .list-view .list-cell:filled:selected:hover {
+   -fx-background-color: #a8247c;
+}
+
+.combo-box-popup .list-view .list-cell:filled:hover {
+   -fx-background-color: #a8247c;
+}
+
+.combo-box-base {
+   -fx-background-color: transparent;
+   -fx-text-fill: white;
+}
+
+.combo-box-base:editable .text-input {
+   -fx-text-fill: inherit;
+   -fx-fill: white;
+   -fx-background-color: transparent;
+   -fx-prompt-text-fill: rgb(255, 255, 255);
+   -fx-font-size: 17;
+}
+
+.combo-box > .arrow-button {
+   -fx-background-color: transparent;
+}
+
 /* ============== Estilos de los botones ============== */
- .botones-ejecucion {
-	-fx-border-style: solid none solid none;
-	-fx-border-width: 3;
-	-fx-border-color: #fff;
- }
- 
- .botones-ejecucion:hover {
-	 -fx-background-color: rgba(255, 255, 255, .2);
- }
+.botones-ejecucion {
+   -fx-border-style: solid none solid none;
+   -fx-border-width: 3;
+   -fx-border-color: #fff;
+}
+
+.botones-ejecucion:hover {
+   -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.botones-ejecucion:focused {
+	-fx-background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ============== Estilos de los botones ============== */
+.text-input:readonly {
+    -fx-text-fill: gray;
+}

@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 
@@ -27,7 +28,7 @@ public class Main extends Application {
 	}
 
 	/**
-	 * Primera escena que se mostrará al iniciar el programa.
+	 * Primera escena que se mostrara al iniciar el programa.
 	 */
 	public void iniciar() {
 		try {
@@ -35,6 +36,7 @@ public class Main extends Application {
 			FXMLLoader loader = new FXMLLoader();
 			loader.setLocation(Main.class.getResource("vista/PadreFXML.fxml"));
 			rootLayout = (BorderPane) loader.load();
+			primaryStage.getIcons().add(new Image("application/recursos/icono.png"));
 
 			// Mostramos la escena
 			Scene scene = new Scene(rootLayout);
@@ -57,9 +59,11 @@ public class Main extends Application {
 
 			// Mostramos la esceha
 			Stage ventanaRegistrar = new Stage();
+			ventanaRegistrar.getIcons().add(new Image("application/recursos/icono.png"));
 			ventanaRegistrar.setTitle("Registrar Alumno");
 			ventanaRegistrar.initModality(Modality.APPLICATION_MODAL);
 			ventanaRegistrar.initOwner(primaryStage);
+			ventanaRegistrar.setResizable(false);
 			Scene scene = new Scene(page);
 			ventanaRegistrar.setScene(scene);
 
@@ -79,22 +83,24 @@ public class Main extends Application {
 			loader.setLocation(Main.class.getResource("vista/ConsultarAlumnoFXML.fxml"));
 			AnchorPane page = (AnchorPane) loader.load();
 
-			// Accedemos al controlador para inicializar los textfields, según sera el
+			// Accedemos al controlador para inicializar los textfields, segï¿½n sera el
 			// Id:
-			// Id vacío = Se está abriendo desde el menú.
-			// Id con el ID = Se está abriendo desde el botón Consultar de Reporte.
+			// Id vacio = Se estï¿½ abriendo desde el menï¿½.
+			// Id con el ID = Se estï¿½ abriendo desde el botï¿½n Consultar de Reporte.
 			ConsultarAlumnoControlador controlador = loader.getController();
 			controlador.initialize(id);
 
 			// Mostramos la esceha
-			Stage ventanaRegistrar = new Stage();
-			ventanaRegistrar.setTitle("Reporte");
-			ventanaRegistrar.initModality(Modality.APPLICATION_MODAL);
-			ventanaRegistrar.initOwner(primaryStage);
+			Stage ventanaConsultas = new Stage();
+			ventanaConsultas.getIcons().add(new Image("application/recursos/icono.png"));
+			ventanaConsultas.setTitle("Reporte");
+			ventanaConsultas.initModality(Modality.APPLICATION_MODAL);
+			ventanaConsultas.initOwner(primaryStage);
+			ventanaConsultas.setResizable(false);
 			Scene scene = new Scene(page);
-			ventanaRegistrar.setScene(scene);
+			ventanaConsultas.setScene(scene);
 
-			ventanaRegistrar.showAndWait();
+			ventanaConsultas.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -111,14 +117,16 @@ public class Main extends Application {
 			AnchorPane page = (AnchorPane) loader.load();
 
 			// Mostramos la esceha
-			Stage ventanaRegistrar = new Stage();
-			ventanaRegistrar.setTitle("Reporte");
-			ventanaRegistrar.initModality(Modality.APPLICATION_MODAL);
-			ventanaRegistrar.initOwner(primaryStage);
+			Stage ventanaReportes = new Stage();
+			ventanaReportes.getIcons().add(new Image("application/recursos/icono.png"));
+			ventanaReportes.setTitle("Reporte");
+			ventanaReportes.initModality(Modality.APPLICATION_MODAL);
+			ventanaReportes.initOwner(primaryStage);
+			ventanaReportes.setResizable(false);
 			Scene scene = new Scene(page);
-			ventanaRegistrar.setScene(scene);
+			ventanaReportes.setScene(scene);
 
-			ventanaRegistrar.showAndWait();
+			ventanaReportes.showAndWait();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

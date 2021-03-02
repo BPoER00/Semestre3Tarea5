@@ -74,14 +74,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnGuardar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickGuardar" prefHeight="50.0" styleClass="botones-ejecucion" text="Guardar" textFill="WHITE">
+                  <Button fx:id="btnGuardar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickGuardar" onKeyPressed="#enterBtnGuardar" prefHeight="50.0" styleClass="botones-ejecucion" text="Guardar" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
                         <Insets left="15.0" right="15.0" />
                      </GridPane.margin></Button>
-                  <Button fx:id="btnSalir" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickSalir" prefHeight="50.0" styleClass="botones-ejecucion" text="Salir" textFill="WHITE" GridPane.columnIndex="1">
+                  <Button fx:id="btnSalir" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickSalir" onKeyPressed="#enterBtnSalir" prefHeight="50.0" styleClass="botones-ejecucion" text="Salir" textFill="WHITE" GridPane.columnIndex="1">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>

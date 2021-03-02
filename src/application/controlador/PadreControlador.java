@@ -4,8 +4,12 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.MenuItem;
+import javafx.stage.Stage;
 
 public class PadreControlador {
 
@@ -14,7 +18,10 @@ public class PadreControlador {
 
 	@FXML
 	private URL location;
-
+	
+	@FXML
+	private Button btnCerrar;
+	
 	Main miMain = new Main();
 
 	@FXML
@@ -39,7 +46,7 @@ public class PadreControlador {
 
 	@FXML
 	void clickSalir(ActionEvent event) {
-		System.out.println("Test");
+		Platform.exit();
 	}
 
 	@FXML

@@ -71,15 +71,15 @@ public class ReporteControlador {
 
 		/**
 		 * NOTA:
-		 * No se si funcionará de manera separada.
-		 * En caso de que no se haya problemas, intentar escribir en un solo método los dos métodos
-		 * o pegarlo todo aquí.
-		 * Aunque creo que sí funcionó, porque me agarró el ejemplo
+		 * No se si funcionara de manera separada.
+		 * En caso de que no se haya problemas, intentar escribir en un solo mï¿½todo los dos mï¿½todos
+		 * o pegarlo todo aqui.
+		 * Aunque creo que si funciono, porque me agarro el ejemplo
 		 */
 		List<ModeloAlumno> modelo = new ArrayList<ModeloAlumno>();
 		// modelo = baseDeDatos.consultar(); --- Consultar toda la base de datos para obtener datos.
 		// Prueba
-		modelo.add(new ModeloAlumno("1", "1190", "Fabián", "Sistemas"));
+		modelo.add(new ModeloAlumno("1", "1190", "Fabiï¿½n", "Sistemas"));
 		agregarDatosATabla(modelo);
 		agregarFiltros(modelo);
 	}
@@ -89,10 +89,10 @@ public class ReporteControlador {
 	 */
 	private void agregarDatosATabla(List<ModeloAlumno> modelo) {
 		
-		// Insertamos la información
+		// Insertamos la informaciï¿½n
 		ObservableList<ModeloAlumno> data = FXCollections.observableArrayList(modelo);
 
-		// Adaptamos las celdas para que sean compatibles al tipo de dato que recibirán
+		// Adaptamos las celdas para que sean compatibles al tipo de dato que recibirï¿½n
 		// Nota: El nombre al final debe ser igual a los atributos del modelo
 		columnId.setCellValueFactory(new PropertyValueFactory<ModeloAlumno, String>("Id"));
 		columnCarnet.setCellValueFactory(new PropertyValueFactory<ModeloAlumno, String>("Carnet"));
@@ -102,20 +102,20 @@ public class ReporteControlador {
 
 	/**
 	 * Le agrega filtros al campo textField para que el usuario pueda buscar y
-	 * filtre automáticamente la tabla
+	 * filtre automï¿½ticamente la tabla
 	 */
 	private void agregarFiltros(List<ModeloAlumno> modelo) {
-		// Insertamos la información
+		// Insertamos la informaciï¿½n
 		ObservableList<ModeloAlumno> data = FXCollections.observableArrayList(modelo);
 
-		// 1. Agregamos un filtro para la barra de búsqueda
+		// 1. Agregamos un filtro para la barra de bï¿½squeda
 		FilteredList<ModeloAlumno> filtrarDatos = new FilteredList<>(data, b -> true);
 
-		// 2. Creamos un listener que escuchará los cambios en la barra y tratará de
+		// 2. Creamos un listener que escucharï¿½ los cambios en la barra y tratarï¿½ de
 		// hallar coincidencias.
 		textBuscar.textProperty().addListener((observable, oldValue, newValue) -> {
 			filtrarDatos.setPredicate(dato -> {
-				// Si está vacío, que muestre toda la información en la tabla
+				// Si estï¿½ vacï¿½o, que muestre toda la informaciï¿½n en la tabla
 				if (newValue == null || newValue.isEmpty()) {
 					return true;
 				}
@@ -125,7 +125,7 @@ public class ReporteControlador {
 				if (dato.getId().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Coincidencia con el Id
 				} else if (dato.getCarnet().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-					return true; // Coincidencia con la organización
+					return true; // Coincidencia con la organizaciï¿½n
 				} else if (dato.getNombre().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Coincidencia con el nombre
 				} else if (dato.getCurso().toLowerCase().indexOf(lowerCaseFilter) != -1) {
@@ -136,7 +136,7 @@ public class ReporteControlador {
 		});
 
 		// 3. Agregamos los datos en un sortedData para ordenarlos
-		// Esto no tiene nada que ver con las demás consultas
+		// Esto no tiene nada que ver con las demï¿½s consultas
 		SortedList<ModeloAlumno> datoOrdenado = new SortedList<>(filtrarDatos);
 
 		// 4. Vinculamos el sorted con los datos
