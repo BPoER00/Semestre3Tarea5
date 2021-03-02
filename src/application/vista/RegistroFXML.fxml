@@ -14,12 +14,12 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="850.0" styleClass="fondo" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controlador.RegistroControlador">
+<AnchorPane prefHeight="600.0" prefWidth="950.0" styleClass="fondoRegistro" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controlador.RegistroControlador">
    <children>
-      <GridPane layoutX="200.0" layoutY="233.0" prefHeight="534.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane hgap="8.0" layoutX="200.0" layoutY="233.0" prefHeight="534.0" prefWidth="850.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="523.3999938964844" minWidth="10.0" prefWidth="512.1999816894531" />
+          <ColumnConstraints hgrow="SOMETIMES" maxWidth="400.199951171875" minWidth="10.0" prefWidth="297.8000183105469" />
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="194.79999389648438" minHeight="0.0" prefHeight="102.99998168945312" vgrow="SOMETIMES" />
@@ -27,7 +27,7 @@
           <RowConstraints maxHeight="340.80002441406253" minHeight="10.0" prefHeight="101.19998779296878" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Registro de Estudiantes">
+            <Label text="Registro de Estudiantes" textFill="WHITE">
                <font>
                   <Font size="24.0" />
                </font></Label>
@@ -42,25 +42,25 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="Carnet" />
-                  <Label text="Nombre completo" GridPane.rowIndex="1" />
-                  <Label text="Curso" GridPane.rowIndex="2" />
+                  <Label text="Carnet" textFill="WHITE" />
+                  <Label text="Nombre completo" textFill="WHITE" GridPane.rowIndex="1" />
+                  <Label text="Curso" textFill="WHITE" GridPane.rowIndex="2" />
                   <AnchorPane GridPane.columnIndex="1">
                      <children>
-                        <TextField fx:id="textCarnet" layoutY="21.0" onKeyPressed="#teclaPresionada" prefHeight="26.0" prefWidth="192.0" promptText="Escriba aquí..." AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="21.0" />
-                        <Label fx:id="labelErrorCarnet" layoutY="49.0" prefHeight="18.0" prefWidth="200.0" text="Label de errores" textFill="RED" />
+                        <TextField fx:id="textCarnet" layoutY="34.0" onKeyPressed="#teclaPresionada" prefHeight="26.0" prefWidth="192.0" promptText="Escriba aquí..." style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="34.0" />
+                        <Label fx:id="labelErrorCarnet" layoutY="61.0" prefHeight="18.0" prefWidth="200.0" text="Label de errores" textFill="RED" />
                      </children>
                   </AnchorPane>
                   <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
-                        <TextField fx:id="textNombre" layoutY="21.0" onKeyPressed="#teclaPresionada" prefHeight="26.0" prefWidth="203.0" promptText="Escriba aquí..." AnchorPane.leftAnchor="0.20000000000001705" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="21.0" />
-                        <Label fx:id="labelErrorNombre" layoutY="48.0" prefHeight="18.0" prefWidth="200.0" text="Label de errores" textFill="RED" />
+                        <TextField fx:id="textNombre" layoutY="34.0" onKeyPressed="#teclaPresionada" prefHeight="26.0" prefWidth="203.0" promptText="Escriba aquí..." style="-fx-background-color: white;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="11.199999999999989" AnchorPane.topAnchor="34.0" />
+                        <Label fx:id="labelErrorNombre" layoutY="61.0" prefHeight="18.0" prefWidth="200.0" text="Label de errores" textFill="RED" />
                      </children>
                   </AnchorPane>
                   <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <ComboBox fx:id="comboCurso" layoutY="21.0" onKeyPressed="#teclaPresionada" prefWidth="150.0" promptText="Seleccione" />
-                        <Label fx:id="labelErrorCurso" layoutY="49.0" prefHeight="18.0" prefWidth="214.0" text="Label de errores" textFill="RED" />
+                        <ComboBox fx:id="comboCurso" layoutY="34.0" onKeyPressed="#teclaPresionada" prefWidth="150.0" promptText="Seleccione" />
+                        <Label fx:id="labelErrorCurso" layoutY="61.0" prefHeight="18.0" prefWidth="214.0" text="Label de errores" textFill="RED" />
                      </children>
                   </AnchorPane>
                </children>
@@ -74,14 +74,14 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button fx:id="btnGuardar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickGuardar" prefHeight="50.0" text="Guardar">
+                  <Button fx:id="btnGuardar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickGuardar" prefHeight="50.0" styleClass="botones-ejecucion" text="Guardar" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                      <GridPane.margin>
                         <Insets left="15.0" right="15.0" />
                      </GridPane.margin></Button>
-                  <Button fx:id="btnSalir" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickSalir" prefHeight="50.0" text="Salir" GridPane.columnIndex="1">
+                  <Button fx:id="btnSalir" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickSalir" prefHeight="50.0" styleClass="botones-ejecucion" text="Salir" textFill="WHITE" GridPane.columnIndex="1">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -90,9 +90,9 @@
                      </GridPane.margin></Button>
                </children>
             </GridPane>
-            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <AnchorPane minWidth="266.0" prefHeight="480.0" prefWidth="306.0" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowSpan="3">
                <children>
-                  <ImageView fitHeight="194.0" fitWidth="302.0" layoutX="70.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="70.0" AnchorPane.rightAnchor="71.06667480468752">
+                  <ImageView fitHeight="240.0" fitWidth="329.0" layoutX="34.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="34.0" AnchorPane.rightAnchor="34.60000000000002">
                      <image>
                         <Image url="@../recursos/logoUmg.png" />
                      </image>
@@ -101,7 +101,7 @@
             </AnchorPane>
          </children>
          <padding>
-            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+            <Insets left="20.0" />
          </padding>
       </GridPane>
    </children>
