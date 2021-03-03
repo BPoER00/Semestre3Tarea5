@@ -46,26 +46,39 @@ public class RegistroControlador {
 	@FXML
 	private Label labelErrorCurso;
 
+	/* =========== Comandos para los botones =========== */
 	@FXML
 	void clickGuardar(ActionEvent event) {
-		System.out.println("test");
+		System.out.println("Guardando");
 	}
 
 	@FXML
 	void clickSalir(ActionEvent event) {
-
+		System.out.println("Saliendo");
 	}
 
 	@FXML
+	void enterBtnGuardar(KeyEvent event) {
+		System.out.println("Guardando");
+	}
+
+	@FXML
+	void enterBtnSalir(KeyEvent event) {
+		System.out.println("Saliendo");
+	}
+
+	/* =========== Comandos para los TextField =========== */
+	@FXML
 	void teclaPresionada(KeyEvent event) {
 		System.out.println("Normalmente solo la utilizo para cuando se presiona la tecla Enter");
-		// Te dejo el código:
+		// Te dejo el codigo:
 		if (event.getCode().equals(KeyCode.ENTER)) {
-			// Hacer referencia al método "Guardar" o lo que quieras
+			// Hacer referencia al mï¿½todo "Guardar" o lo que quieras
 			System.out.println("Has presionado la tecla enter...");
 		}
 	}
 
+	/* =========== Inicializador =========== */
 	@FXML
 	void initialize() {
 		insertarDatosAlComboBox();
@@ -81,19 +94,20 @@ public class RegistroControlador {
 		ObservableList<String> items = FXCollections.observableArrayList();
 
 		// Agregamos los cursos|
-		items.addAll("Administración de tecnologías de información", "Algebra lineal", "Algoritmos",
-				"Análisis de sistemas I", "Análisis de sistemas II", "Arquitectura de computadoras I",
-				"Arquitectura de computadoras II", "Aseguramiento de la calidad del software", "Autómatas y lenguajes",
-				"Base de datos I", "Base de datos II", "Cálculo I", "Cálculo II", "Compiladores", "Contabilidad I",
-				"Contabilidad II", "Derecho Informático", "Desarrollo Humano", "Desarrollo Web",
-				"Electrónica analógica", "Electrónica digital", "Emprendedores de negocios", "Estadística I",
-				"Estadística II", "Ética profesional", "Física I", "Física II", "Inteligencia artificial",
-				"Inteniería de software", "Introducción a los sistemas", "Investigación de operaciones",
-				"Lógica de sistemas", "Matemática Discreta", "Metodo de la Investigación", "Métodos numéricos",
-				"Microeconomía", "Precálculo", "Proceso Administrativo", "Programación I", "Programación II",
-				"Programación III", "Proyecto de graduación I", "Proyecto de graduación II", "Redes de computadoras I",
+		items.addAll("Administraciï¿½n de tecnologï¿½as de informaciï¿½n", "Algebra lineal", "Algoritmos",
+				"Anï¿½lisis de sistemas I", "Anï¿½lisis de sistemas II", "Arquitectura de computadoras I",
+				"Arquitectura de computadoras II", "Aseguramiento de la calidad del software",
+				"Autï¿½matas y lenguajes", "Base de datos I", "Base de datos II", "Cï¿½lculo I", "Cï¿½lculo II",
+				"Compiladores", "Contabilidad I", "Contabilidad II", "Derecho Informï¿½tico", "Desarrollo Humano",
+				"Desarrollo Web", "Electrï¿½nica analï¿½gica", "Electrï¿½nica digital", "Emprendedores de negocios",
+				"Estadï¿½stica I", "Estadï¿½stica II", "ï¿½tica profesional", "Fï¿½sica I", "Fï¿½sica II",
+				"Inteligencia artificial", "Intenierï¿½a de software", "Introducciï¿½n a los sistemas",
+				"Investigaciï¿½n de operaciones", "Lï¿½gica de sistemas", "Matemï¿½tica Discreta",
+				"Metodo de la Investigaciï¿½n", "Mï¿½todos numï¿½ricos", "Microeconomï¿½a", "Precï¿½lculo",
+				"Proceso Administrativo", "Programaciï¿½n I", "Programaciï¿½n II", "Programaciï¿½n III",
+				"Proyecto de graduaciï¿½n I", "Proyecto de graduaciï¿½n II", "Redes de computadoras I",
 				"Redes de computadoras II", "Seguridad y auditoria de Sistemas",
-				"Seminarios de tecnologías de información", "Sistemas operativos", "Sistemas operativos II",
+				"Seminarios de tecnologï¿½as de informaciï¿½n", "Sistemas operativos", "Sistemas operativos II",
 				"Telecomunicaciones");
 
 		comboCurso.setItems(items);

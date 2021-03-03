@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ComboBox?>
@@ -9,22 +10,26 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="850.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controlador.ConsultarAlumnoControlador">
+<AnchorPane prefHeight="550.0" prefWidth="850.0" styleClass="fondoConsulta" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controlador.ConsultarAlumnoControlador">
    <children>
-      <GridPane layoutX="178.0" layoutY="216.0" prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <GridPane layoutY="-6.0" prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-6.0">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="119.5999740600586" minHeight="10.0" prefHeight="103.20001983642578" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="126.79999389648441" minHeight="10.0" prefHeight="68.20000610351562" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="261.59999389648436" minHeight="10.0" prefHeight="261.59999389648436" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="132.39999999999998" minHeight="10.0" prefHeight="94.80002441406248" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Label text="Consultas" />
+            <Label text="Consultas" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -34,12 +39,15 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox prefWidth="150.0" promptText="Buscar por:">
+                  <ComboBox fx:id="comboBuscarPor" prefWidth="150.0" promptText="Buscar por:" styleClass="combo-box">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ComboBox>
-                  <TextField onKeyPressed="#teclaPresionadaBuscar" promptText="Escriba aquí..." GridPane.columnIndex="1" />
+                  <TextField onKeyPressed="#teclaPresionadaBuscar" promptText="Escriba aquí..." style="-fx-background-color: white;" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
                </children>
             </GridPane>
             <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">
@@ -54,14 +62,38 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Label text="ID: " />
-                  <Label text="Carnet: " GridPane.rowIndex="1" />
-                  <Label text="Nombre: " GridPane.rowIndex="2" />
-                  <Label text="Curso: " GridPane.rowIndex="3" />
-                  <TextField fx:id="textId" onKeyPressed="#teclaPresionadaCampos" promptText="Recibir alumno" GridPane.columnIndex="1" />
-                  <TextField fx:id="textCarnet" onKeyPressed="#teclaPresionadaCampos" promptText="Recibir alumno" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <TextField fx:id="textNombre" onKeyPressed="#teclaPresionadaCampos" promptText="Recibir alumno" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-                  <TextField fx:id="textCurso" onKeyPressed="#teclaPresionadaCampos" promptText="Recibir alumno" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <Label text="ID: " textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label text="Carnet: " textFill="WHITE" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label text="Nombre: " textFill="WHITE" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <Label text="Curso: " textFill="WHITE" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font></Label>
+                  <TextField fx:id="textId" onKeyPressed="#teclaPresionadaCampos" prefHeight="30.0" prefWidth="375.0" promptText="Recibir alumno" style="-fx-background-color: white;" GridPane.columnIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <TextField fx:id="textCarnet" onKeyPressed="#teclaPresionadaCampos" promptText="Recibir alumno" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <TextField fx:id="textNombre" onKeyPressed="#teclaPresionadaCampos" promptText="Recibir alumno" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
+                  <TextField fx:id="textCurso" onKeyPressed="#teclaPresionadaCampos" promptText="Recibir alumno" style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <font>
+                        <Font size="14.0" />
+                     </font></TextField>
                </children>
             </GridPane>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="3">
@@ -74,24 +106,45 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" onAction="#clickEliminar" text="Eliminar">
+                  <Button fx:id="btnEliminar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickEliminar" onKeyPressed="#enterBtnEliminar" prefHeight="50.0" styleClass="botones-ejecucion" text="Eliminar" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickGuardar" text="Guardar" GridPane.columnIndex="2">
+                  <Button fx:id="btnGuardar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickGuardar" onKeyPressed="#enterBtnGuardar" prefHeight="50.0" styleClass="botones-ejecucion" text="Guardar" textFill="WHITE" GridPane.columnIndex="2">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </GridPane.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#clickEditar" text="Editar" GridPane.columnIndex="1">
+                  <Button fx:id="btnEditar" maxHeight="-Infinity" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickEditar" onKeyPressed="#enterBtnEditar" prefHeight="50.0" styleClass="botones-ejecucion" text="Editar" textFill="WHITE" GridPane.columnIndex="1">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <GridPane.margin>
+                        <Insets left="15.0" right="15.0" />
+                     </GridPane.margin>
                   </Button>
                </children>
             </GridPane>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
       </GridPane>
    </children>
 </AnchorPane>
