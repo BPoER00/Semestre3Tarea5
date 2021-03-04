@@ -53,7 +53,7 @@
                         <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
-                        <TextField onKeyPressed="#teclaPresionadaBuscar" promptText="Escriba aquí..." style="-fx-background-color: white;">
+                        <TextField fx:id="textBuscar" onKeyPressed="#teclaPresionadaBuscar" promptText="Escriba aquí..." style="-fx-background-color: white;">
                            <font>
                               <Font size="14.0" />
                            </font>

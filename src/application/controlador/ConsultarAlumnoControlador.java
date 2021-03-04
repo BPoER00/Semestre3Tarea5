@@ -48,6 +48,9 @@ public class ConsultarAlumnoControlador {
 
 	@FXML
 	private TextField textCurso;
+	
+	@FXML
+	private TextField textBuscar;
 
 	@FXML
 	private ComboBox<String> comboBuscarPor;
@@ -57,7 +60,7 @@ public class ConsultarAlumnoControlador {
 	/* =========== Comandos para los botones =========== */
 	@FXML
 	void clickBuscar(ActionEvent event) {
-		System.out.println();
+		
 	}
 
 	@FXML
