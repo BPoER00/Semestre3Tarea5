@@ -174,10 +174,7 @@ public class ConsultarAlumnoControlador {
 		textCurso.setEditable(valor);
 	}
 
-	/**
-	 * Le pregunta al usuario si est� seguro de eliminar al alumno. Si confirma, se
-	 * eliminar� al alumno de la bsae de datos.
-	 */
+	
 	private void eliminarAlumno() {
 		String mensaje = "�Est� seguro de eliminar este alumno?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Eliminar alumno")) {
@@ -190,15 +187,9 @@ public class ConsultarAlumnoControlador {
 		}
 	}
 
-	/**
-	 * Pregunta al usuario si est� seguro de guardar los cambios antes de ejecutar
-	 * una actualizaci�n a la base de datos
-	 */
 	private void guardarCambios() {
 		String mensaje = "�Est� seguro de querer guardar los cambios?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Guardar cambios")) {
-
-			// TODO: Si presiona s�, pues ejecutar la actualizaci�n.
 
 			miAlerta.mensajeExito("Alumno actualizado exit�samente.", "Exito");
 		}

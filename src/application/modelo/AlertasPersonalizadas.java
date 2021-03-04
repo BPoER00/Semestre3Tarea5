@@ -11,11 +11,11 @@ import javafx.stage.Stage;
 public class AlertasPersonalizadas {
 
 	/**
-	 * HAY MÁS TIPOS DE MENSAJE, AQUÍ SOLO PUSE LAS QUE MÁS FRECUENTO
+	 * HAY MAS TIPOS DE MENSAJE, AQUA SOLO PUSE LAS QUE MAS FRECUENTO
 	 */
 
 	/**
-	 * Genera un mensaje mostrando algún tipo de información necesaria para el
+	 * Genera un mensaje mostrando algun tipo de informacion necesaria para el
 	 * usuario.
 	 * 
 	 * @param mensaje
@@ -26,12 +26,12 @@ public class AlertasPersonalizadas {
 		alert.setTitle(titulo);
 		alert.setHeaderText(null);
 		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos ícono
+		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos icono
 		stage.showAndWait();
 	}
 
 	/**
-	 * Genera un mensaje mostrando algún error.
+	 * Genera un mensaje mostrando algun error.
 	 * 
 	 * @param mensaje
 	 * @param titulo
@@ -41,12 +41,12 @@ public class AlertasPersonalizadas {
 		alert.setTitle("Error al intentar guardar");
 		alert.setHeaderText(null);
 		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos ícono
+		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos ï¿½cono
 		stage.showAndWait();
 	}
 
 	/**
-	 * Genera un mensaje de confirmación antes de llevar a cabo una acción.
+	 * Genera un mensaje de confirmacion antes de llevar a cabo una accion.
 	 * 
 	 * @param mensaje Realiar en forma de pregunta.
 	 * @param title
@@ -57,7 +57,7 @@ public class AlertasPersonalizadas {
 		alert.setTitle(title);
 		alert.setHeaderText(null);
 		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos ícono
+		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos icono
 		Optional<ButtonType> result = alert.showAndWait();
 
 		return result.get() == ButtonType.YES;
