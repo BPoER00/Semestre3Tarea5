@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.Main;
+import application.modelo.ModeloAlumno;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,7 +31,7 @@ public class PadreControlador {
 
 	@FXML
 	void clickConsultarAlumno(ActionEvent event) {
-		miMain.abrirConsultas("");
+		miMain.abrirConsultas(new ModeloAlumno("","","",""));
 	}
 
 	@FXML

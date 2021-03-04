@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import Conexion.Consultas;
 import application.Main;
+import application.modelo.AlertasPersonalizadas;
 import application.modelo.ModeloAlumno;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -51,47 +52,51 @@ public class ReporteControlador {
 	private Button btnConsultar;
 
 	private Main miMain = new Main();
+	
+	private ModeloAlumno alumnoSeleccionado = new ModeloAlumno();
+	
+	private AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
 
 	@FXML
 	void clickConsultar(ActionEvent event) {
-		// TODO: Cerrar esta ventana y abrir la ventana de consultas con los datos ya
-		// dentro de los
-		// campos.
-
-		// Buscar la forma de obtener el valor del Id de la fila seleccionada por el
-		// usuario:
-		miMain.abrirConsultas("Obtener Id de la fila seleccionada");
-
-		// Cerramos la ventana
-		Stage cerrar = (Stage) btnConsultar.getScene().getWindow();
-		cerrar.close();
+		try {
+			if(alumnoSeleccionado.getId().length() > 0) {
+				miMain.abrirConsultas(alumnoSeleccionado);
+				
+				// Cerramos la ventana
+				Stage cerrar = (Stage) btnConsultar.getScene().getWindow();
+				cerrar.close();
+			}
+		} catch(Exception e) {
+			String mensaje = "Seleccione una fila para poder consultar al alumno.";
+			miAlerta.mensajeError(mensaje, "Error");
+		}
 	}
 
 	@FXML
 	void initialize() {
 
-		/**
-		 * NOTA:
-		 * No se si funcionara de manera separada.
-		 * En caso de que no se haya problemas, intentar escribir en un solo m�todo los dos m�todos
-		 * o pegarlo todo aqui.
-		 * Aunque creo que si funciono, porque me agarro el ejemplo
-		 */
+		// Cargamos datos
 		List<ModeloAlumno> modelo = new ArrayList<ModeloAlumno>();
-		// modelo = baseDeDatos.consultar(); --- Consultar toda la base de datos para obtener datos.
-		// Prueba
 		Consultas obtenerDatos = new Consultas();
 		modelo = obtenerDatos.consultarTabla();
-		modelo.add(new ModeloAlumno("1", "1190", "Fabi�n", "Sistemas"));
 		agregarDatosATabla(modelo);
 		agregarFiltros(modelo);
+
+		// Agregamos un listener para obtener el id de la fila seleccionada
+		tableAlumnos.setOnMouseClicked(e -> {
+			alumnoSeleccionado.setId(tableAlumnos.getSelectionModel().getSelectedItem().getId());
+			alumnoSeleccionado.setCarnet(tableAlumnos.getSelectionModel().getSelectedItem().getCarnet());
+			alumnoSeleccionado.setNombre(tableAlumnos.getSelectionModel().getSelectedItem().getNombre());
+			alumnoSeleccionado.setCurso(tableAlumnos.getSelectionModel().getSelectedItem().getCurso());
+		});
 	}
 
 	/**
 	 * Agrega datos a la tabla.
 	 */
 	private void agregarDatosATabla(List<ModeloAlumno> modelo) {
-		
+
 		// Insertamos la informaci�n
 		ObservableList<ModeloAlumno> data = FXCollections.observableArrayList(modelo);
 

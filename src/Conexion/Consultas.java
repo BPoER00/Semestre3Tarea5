@@ -23,7 +23,7 @@ import java.util.List;
 public class Consultas {
     public PreparedStatement ps;
     
-	public void Guardar(ModeloAlumno alumno) {
+	public boolean Guardar(ModeloAlumno alumno) {
 
 		try {
 			ConexionDB Conn = new ConexionDB();
@@ -36,11 +36,12 @@ public class Consultas {
 			ps.setString(3, alumno.getCurso());
 
 			ps.executeUpdate();
+			return true;
 
 		} catch (Exception e) {
 			System.out.println(e);
-
 		}
+		return false;
 	}
 
 	/**
