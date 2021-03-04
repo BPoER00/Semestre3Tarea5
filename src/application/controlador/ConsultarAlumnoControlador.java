@@ -56,7 +56,7 @@ public class ConsultarAlumnoControlador {
 	/* =========== Comandos para los botones =========== */
 	@FXML
 	void clickBuscar(ActionEvent event) {
-
+		System.out.println();
 	}
 
 	@FXML
@@ -181,12 +181,12 @@ public class ConsultarAlumnoControlador {
 	 * Elimina a un alumno
 	 */
 	private void eliminarAlumno() {
-		String mensaje = "�Est� seguro de eliminar este alumno?";
+		String mensaje = "¿Está seguro de eliminar este alumno?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Eliminar alumno")) {
 
 			// TODO: Si presiona s�, pues ejecutar la eliminaci�n.
 
-			miAlerta.mensajeExito("Alumno eliminado exit�samente.", "Exito");
+			miAlerta.mensajeExito("Alumno eliminado exitósamente.", "Éxito");
 			Stage cerrar = (Stage) btnEliminar.getScene().getWindow();
 			cerrar.close();
 		}
@@ -196,10 +196,10 @@ public class ConsultarAlumnoControlador {
 	 * Guarda los cambios realizados al editar
 	 */
 	private void guardarCambios() {
-		String mensaje = "�Est� seguro de querer guardar los cambios?";
+		String mensaje = "¿Está seguro de querer guardar los cambios?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Guardar cambios")) {
 
-			miAlerta.mensajeExito("Alumno actualizado exit�samente.", "Exito");
+			miAlerta.mensajeExito("Alumno actualizado exitósamente.", "Éxito");
 		}
 	}
 	
