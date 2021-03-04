@@ -35,14 +35,14 @@ public class PadreControlador {
 
 	@FXML
 	void clickHechoPor(ActionEvent event) {
-		String mensaje = "Universidad Mariano Gálvez, Zacapa\n"
-				+ "Ingeniería en Sistemas\n"
-				+ "Curso:\t\t Programación III\n"
+		String mensaje = "Universidad Mariano Galvez, Zacapa\n"
+				+ "Ingenieria en Sistemas\n"
+				+ "Curso:\t\t Programacion III\n"
 				+ "Ciclo:\t\t V\n"
-				+ "Catedrático:\t Ing. Vinicio Román\n"
+				+ "Catedratico:\t Ing. Vinicio Romï¿½n\n"
 				+ "Grupo:\n"
-				+ "Alumno:\t\t Bryan Emanuel Paz Ramírez\nCarnet:\t\t 1190-19-3929\n"
-				+ "Alumno:\t\t Luis Renato Granados Ogáldez\nCarnet:\t\t 1190-19-4642\n"
+				+ "Alumno:\t\t Bryan Emanuel Paz Ramï¿½rez\nCarnet:\t\t 1190-19-3929\n"
+				+ "Alumno:\t\t Luis Renato Granados Ogï¿½ldez\nCarnet:\t\t 1190-19-4642\n"
 				+ "Fecha:\t\t 06/03/2021";
 		
 		Alert alert = new Alert(AlertType.INFORMATION, mensaje, ButtonType.OK);

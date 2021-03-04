@@ -160,32 +160,32 @@ public class ConsultarAlumnoControlador {
 	}
 
 	/**
-	 * Le pregunta al usuario si está seguro de eliminar al alumno. Si confirma, se
-	 * eliminará al alumno de la bsae de datos.
+	 * Le pregunta al usuario si esta seguro de eliminar al alumno. Si confirma, se
+	 * eliminara al alumno de la bsae de datos.
 	 */
 	private void eliminarAlumno() {
-		String mensaje = "¿Está seguro de eliminar este alumno?";
+		String mensaje = "ï¿½Estï¿½ seguro de eliminar este alumno?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Eliminar alumno")) {
 
-			// TODO: Si presiona sí, pues ejecutar la eliminación.
+			// TODO: Si presiona sï¿½, pues ejecutar la eliminaciï¿½n.
 
-			miAlerta.mensajeExito("Alumno eliminado exitósamente.", "Exito");
+			miAlerta.mensajeExito("Alumno eliminado exitï¿½samente.", "Exito");
 			Stage cerrar = (Stage) btnEliminar.getScene().getWindow();
 			cerrar.close();
 		}
 	}
 
 	/**
-	 * Pregunta al usuario si está seguro de guardar los cambios antes de ejecutar
-	 * una actualización a la base de datos
+	 * Pregunta al usuario si esta seguro de guardar los cambios antes de ejecutar
+	 * una actualizacion a la base de datos
 	 */
 	private void guardarCambios() {
-		String mensaje = "¿Está seguro de querer guardar los cambios?";
+		String mensaje = "ï¿½Estï¿½ seguro de querer guardar los cambios?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Guardar cambios")) {
 
-			// TODO: Si presiona sí, pues ejecutar la actualización.
+			// TODO: Si presiona si, pues ejecutar la actualizacion.
 
-			miAlerta.mensajeExito("Alumno actualizado exitósamente.", "Exito");
+			miAlerta.mensajeExito("Alumno actualizado exitï¿½samente.", "Exito");
 		}
 	}
 }

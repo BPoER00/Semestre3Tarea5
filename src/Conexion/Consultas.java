@@ -21,9 +21,10 @@ import java.util.List;
  * @author Bryan Paz Ramirez
  */
 public class Consultas {
-
+    public PreparedStatement ps;
+    
 	public void Guardar(ModeloAlumno alumno) {
-		PreparedStatement ps;
+		
 		// ModeloAlumno datos = new ModeloAlumno();
 		// String Carne = datos.getCarnet();
 		// String Nombre = datos.getNombre();
@@ -65,6 +66,85 @@ public class Consultas {
 
 		// Armamos la consulta
 		String SQL = "SELECT * FROM DatosEstudiante";
+
+		// Creamos la sentencia:
+		try {
+			PreparedStatement sentencia = CONEXION.prepareStatement(SQL);
+			ResultSet res = sentencia.executeQuery();
+
+			// Si se llega ejecutar, entonces nos dará los datos del cliente:
+			while (res.next()) {
+				// Declaramos un dto para obtener los datos:
+				ModeloAlumno miAlumno = new ModeloAlumno();
+				encontrado = true;
+				
+				// Agregamos datos
+				miAlumno.setId(String.valueOf(res.getInt("Id")));
+				miAlumno.setCarnet(res.getString("Carne"));
+				miAlumno.setNombre(res.getString("Nombre"));
+				miAlumno.setCurso(res.getString("Curso"));
+
+				// Lo agregamos a la lista:
+				lista.add(miAlumno);
+			}
+
+			// Cerramos la conexión
+			CONEXION.close();
+			conexion = null;
+			CONEXION = null;
+		} catch (SQLException e) {
+			// JOptionPane.showMessageDialog(null, e.getMessage(), "Error de conexión",
+			// JOptionPane.ERROR_MESSAGE);
+			AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
+			miAlerta.mensajeError(e.getMessage(), "Error");
+		}
+		if (!encontrado) {
+			String mensaje = "No hay alumnos por mostrar.";
+			// JOptionPane.showMessageDialog(null, mensaje, "Error de búsqueda",
+			// JOptionPane.ERROR_MESSAGE);
+			AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
+			miAlerta.mensajeError(mensaje, "Error");
+		}
+		return lista.isEmpty() ? new ArrayList<>() : lista;
+	}
+        
+        public void Borrar(ModeloAlumno alumno){
+            String sql;
+            String Eliminar;
+            if(alumno.getCurso().equals("Id")){
+            sql = "DELETE FROM DatosEstudiante WHERE Id = ?";
+            Eliminar = alumno.getId();
+            }else{
+            sql = "DELETE FROM DatosEstudiante WHERE Carne = ?";
+            Eliminar = alumno.getCarnet();
+            }
+            try{
+                ConexionDB conexion = new ConexionDB();
+                Connection conn = conexion.conexion();
+                
+                ps = conn.prepareStatement(sql);
+                
+                ps.setString(1, Eliminar);
+                
+                
+            }catch(Exception e){
+                
+            }
+        }
+        
+        public List<ModeloAlumno> Busar() {
+
+		boolean encontrado = false;
+		List<ModeloAlumno> lista = new ArrayList<>();
+
+		// Instanciamos un objeto para conectarnos a la base de datos:
+		ConexionDB conexion = new ConexionDB();
+
+		// Establecemos conexión:
+		Connection CONEXION = conexion.conexion();
+
+		// Armamos la consulta
+		String SQL = "SELECT * FROM DatosEstudiante WHERE = ";
 
 		// Creamos la sentencia:
 		try {

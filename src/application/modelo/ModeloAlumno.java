@@ -1,6 +1,7 @@
 package application.modelo;
 
 import java.io.Serializable;
+import javafx.scene.control.SingleSelectionModel;
 
 public class ModeloAlumno implements Serializable {
 
@@ -51,5 +52,9 @@ public class ModeloAlumno implements Serializable {
 	public void setCurso(String curso) {
 		this.curso = curso;
 	}
+
+    public void setCurso(SingleSelectionModel<String> Curso) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
 }
