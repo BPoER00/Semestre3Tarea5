@@ -3,6 +3,7 @@ package application.controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import application.modelo.AlertasPersonalizadas;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 
 public class RegistroControlador {
 
@@ -46,25 +48,31 @@ public class RegistroControlador {
 	@FXML
 	private Label labelErrorCurso;
 
+	AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
+
 	/* =========== Comandos para los botones =========== */
 	@FXML
 	void clickGuardar(ActionEvent event) {
-		System.out.println("Guardando");
+		guardarAlumno();
 	}
 
 	@FXML
 	void clickSalir(ActionEvent event) {
-		System.out.println("Saliendo");
+		cerrarRegistro();
 	}
 
 	@FXML
 	void enterBtnGuardar(KeyEvent event) {
-		System.out.println("Guardando");
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			guardarAlumno();
+		}
 	}
 
 	@FXML
 	void enterBtnSalir(KeyEvent event) {
-		System.out.println("Saliendo");
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			cerrarRegistro();
+		}
 	}
 
 	/* =========== Comandos para los TextField =========== */
@@ -113,5 +121,29 @@ public class RegistroControlador {
 		comboCurso.setItems(items);
 		comboCurso.setEditable(false);
 		comboCurso.setVisibleRowCount(5);
+	}
+
+	/**
+	 * Pregunta al usuario si está seguro de guardar al alumno en la base de datos.
+	 */
+	private void guardarAlumno() {
+		String mensaje = "¿Está seguro de querer guardar?";
+		if (miAlerta.mensajeConfirmar(mensaje, "Guardar")) {
+
+			// TODO: Si presiona sí, pues ejecutar el Insert.
+
+			miAlerta.mensajeExito("Alumno guardado exitósamente.", "Éxito");
+		}
+	}
+
+	/**
+	 * Pregunta al usuario si está seguro de querer cerrar la ventana de registros.
+	 */
+	private void cerrarRegistro() {
+		String mensaje = "¿Está seguro de querer cerrar la pantalla de registro?";
+		if (miAlerta.mensajeConfirmar(mensaje, "Salir")) {
+			Stage cerrar = (Stage) btnSalir.getScene().getWindow();
+			cerrar.close();
+		}
 	}
 }

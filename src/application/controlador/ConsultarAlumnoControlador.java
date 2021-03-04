@@ -68,18 +68,24 @@ public class ConsultarAlumnoControlador {
 
 	@FXML
 	void enterBtnEditar(KeyEvent event) {
-		activarCampos(true);
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			activarCampos(true);
+		}
 	}
 
 	@FXML
 	void enterBtnEliminar(KeyEvent event) {
-		eliminarAlumno();
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			eliminarAlumno();
+		}
 	}
 
 	@FXML
 	void enterBtnGuardar(KeyEvent event) {
-		guardarCambios();
-		activarCampos(false);
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			guardarCambios();
+			activarCampos(false);
+		}
 	}
 
 	/* =========== Comandos para los TextField =========== */

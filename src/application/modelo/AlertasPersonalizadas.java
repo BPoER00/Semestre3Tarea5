@@ -5,6 +5,8 @@ import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
 
 public class AlertasPersonalizadas {
 
@@ -23,7 +25,9 @@ public class AlertasPersonalizadas {
 		Alert alert = new Alert(AlertType.INFORMATION, mensaje, ButtonType.OK);
 		alert.setTitle(titulo);
 		alert.setHeaderText(null);
-		alert.showAndWait();
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos ícono
+		stage.showAndWait();
 	}
 
 	/**
@@ -36,7 +40,9 @@ public class AlertasPersonalizadas {
 		Alert alert = new Alert(AlertType.ERROR, mensaje, ButtonType.OK);
 		alert.setTitle("Error al intentar guardar");
 		alert.setHeaderText(null);
-		alert.showAndWait();
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos ícono
+		stage.showAndWait();
 	}
 
 	/**
@@ -50,6 +56,8 @@ public class AlertasPersonalizadas {
 		Alert alert = new Alert(AlertType.WARNING, mensaje, ButtonType.YES, ButtonType.NO);
 		alert.setTitle(title);
 		alert.setHeaderText(null);
+		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos ícono
 		Optional<ButtonType> result = alert.showAndWait();
 
 		return result.get() == ButtonType.YES;
