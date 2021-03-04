@@ -33,6 +33,9 @@ public class ConsultarAlumnoControlador {
 	private Button btnEditar;
 
 	@FXML
+	private Button btnBuscar;
+
+	@FXML
 	private TextField textId;
 
 	@FXML
@@ -50,6 +53,11 @@ public class ConsultarAlumnoControlador {
 	private AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
 
 	/* =========== Comandos para los botones =========== */
+	@FXML
+	void clickBuscar(ActionEvent event) {
+
+	}
+
 	@FXML
 	void clickEditar(ActionEvent event) {
 		activarCampos(true);
@@ -85,6 +93,13 @@ public class ConsultarAlumnoControlador {
 		if (event.getCode().equals(KeyCode.ENTER)) {
 			guardarCambios();
 			activarCampos(false);
+		}
+	}
+
+	@FXML
+	void enterBtnBuscar(KeyEvent event) {
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			System.out.println("Has presionado la tecla enter en Buscar...");
 		}
 	}
 
@@ -159,10 +174,7 @@ public class ConsultarAlumnoControlador {
 		textCurso.setEditable(valor);
 	}
 
-	/**
-	 * Le pregunta al usuario si esta seguro de eliminar al alumno. Si confirma, se
-	 * eliminara al alumno de la bsae de datos.
-	 */
+	
 	private void eliminarAlumno() {
 		String mensaje = "�Est� seguro de eliminar este alumno?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Eliminar alumno")) {
@@ -175,15 +187,9 @@ public class ConsultarAlumnoControlador {
 		}
 	}
 
-	/**
-	 * Pregunta al usuario si esta seguro de guardar los cambios antes de ejecutar
-	 * una actualizacion a la base de datos
-	 */
 	private void guardarCambios() {
 		String mensaje = "�Est� seguro de querer guardar los cambios?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Guardar cambios")) {
-
-			// TODO: Si presiona si, pues ejecutar la actualizacion.
 
 			miAlerta.mensajeExito("Alumno actualizado exit�samente.", "Exito");
 		}

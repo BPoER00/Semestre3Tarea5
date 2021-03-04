@@ -32,22 +32,45 @@
                </font></Label>
             <GridPane GridPane.columnIndex="1" GridPane.rowIndex="1">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="198.0" minWidth="10.0" prefWidth="163.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="242.0" minWidth="10.0" prefWidth="242.0" />
               </columnConstraints>
               <rowConstraints>
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <ComboBox fx:id="comboBuscarPor" prefWidth="150.0" promptText="Buscar por:" styleClass="combo-box">
+                  <ComboBox fx:id="comboBuscarPor" prefHeight="28.0" prefWidth="116.0" promptText="Buscar por:" styleClass="combo-box">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ComboBox>
-                  <TextField onKeyPressed="#teclaPresionadaBuscar" promptText="Escriba aquí..." style="-fx-background-color: white;" GridPane.columnIndex="1">
-                     <font>
-                        <Font size="14.0" />
-                     </font></TextField>
+                  <GridPane hgap="10.0" GridPane.columnIndex="1">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <TextField onKeyPressed="#teclaPresionadaBuscar" promptText="Escriba aquí..." style="-fx-background-color: white;">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </TextField>
+                        <Button fx:id="btnBuscar" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#clickBuscar" onKeyPressed="#enterBtnBuscar" styleClass="botones-ejecucion" text="Buscar" textFill="WHITE" GridPane.columnIndex="1">
+                           <GridPane.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </GridPane.margin>
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </GridPane>
                </children>
             </GridPane>
             <GridPane GridPane.columnSpan="2" GridPane.rowIndex="2">

@@ -24,14 +24,8 @@ public class Consultas {
     public PreparedStatement ps;
     
 	public void Guardar(ModeloAlumno alumno) {
-		
-		// ModeloAlumno datos = new ModeloAlumno();
-		// String Carne = datos.getCarnet();
-		// String Nombre = datos.getNombre();
-		// String Curso = datos.getCurso();
 
 		try {
-
 			ConexionDB Conn = new ConexionDB();
 			Connection con = Conn.conexion();
 
@@ -40,10 +34,6 @@ public class Consultas {
 			ps.setString(1, alumno.getCarnet());
 			ps.setString(2, alumno.getNombre());
 			ps.setString(3, alumno.getCurso());
-//
-//			System.out.println("Dato 1: " + Carne);
-//			System.out.println("Dato 2: " + Nombre);
-//			System.out.println("Dato 3: " + Curso);
 
 			ps.executeUpdate();
 
@@ -53,6 +43,11 @@ public class Consultas {
 		}
 	}
 
+	/**
+	 * Obtenemos los datos que se encuentren dentro de la base de datos
+	 * 
+	 * @return
+	 */
 	public List<ModeloAlumno> consultarTabla() {
 
 		boolean encontrado = false;
@@ -72,12 +67,12 @@ public class Consultas {
 			PreparedStatement sentencia = CONEXION.prepareStatement(SQL);
 			ResultSet res = sentencia.executeQuery();
 
-			// Si se llega ejecutar, entonces nos dará los datos del cliente:
+			// Si se llega ejecutar, entonces nos dará los datos del alumno:
 			while (res.next()) {
 				// Declaramos un dto para obtener los datos:
 				ModeloAlumno miAlumno = new ModeloAlumno();
 				encontrado = true;
-				
+
 				// Agregamos datos
 				miAlumno.setId(String.valueOf(res.getInt("Id")));
 				miAlumno.setCarnet(res.getString("Carne"));
@@ -93,15 +88,11 @@ public class Consultas {
 			conexion = null;
 			CONEXION = null;
 		} catch (SQLException e) {
-			// JOptionPane.showMessageDialog(null, e.getMessage(), "Error de conexión",
-			// JOptionPane.ERROR_MESSAGE);
 			AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
 			miAlerta.mensajeError(e.getMessage(), "Error");
 		}
 		if (!encontrado) {
 			String mensaje = "No hay alumnos por mostrar.";
-			// JOptionPane.showMessageDialog(null, mensaje, "Error de búsqueda",
-			// JOptionPane.ERROR_MESSAGE);
 			AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
 			miAlerta.mensajeError(mensaje, "Error");
 		}
