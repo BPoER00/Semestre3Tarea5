@@ -80,11 +80,8 @@ public class RegistroControlador {
 	/* =========== Comandos para los TextField =========== */
 	@FXML
 	void teclaPresionada(KeyEvent event) {
-		System.out.println("Normalmente solo la utilizo para cuando se presiona la tecla Enter");
-		// Te dejo el codigo:
 		if (event.getCode().equals(KeyCode.ENTER)) {
-			// Hacer referencia al m�todo "Guardar" o lo que quieras
-			System.out.println("Has presionado la tecla enter...");
+			guardarAlumno();
 		}
 	}
 
@@ -139,9 +136,9 @@ public class RegistroControlador {
 			alumno.setNombre(textNombre.getText());
 			alumno.setCurso(comboCurso.getValue());
 			
-			guardarDB.Guardar(alumno);
-
-			miAlerta.mensajeExito("Alumno guardado exit�samente.", "�xito");
+			if(guardarDB.Guardar(alumno))
+				miAlerta.mensajeExito("Alumno guardado exit�samente.", "�xito");
+				
 		}
 	}
 

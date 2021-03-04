@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import application.modelo.AlertasPersonalizadas;
+import application.modelo.ModeloAlumno;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -122,11 +123,14 @@ public class ConsultarAlumnoControlador {
 
 	/* =========== Inicializador =========== */
 	@FXML
-	public void initialize(String recibirId) {
+	public void initialize(ModeloAlumno recibirAlumno) {
+		
+		deshabilitarBotones(true);
 
 		// Si la consulta se abrio desde la tabla de reportes, ejecutamos:
-		if (!recibirId.equals(""))
-			inicializarConsulta(recibirId);
+		if (!recibirAlumno.getId().equals(""))
+			inicializarDatos(recibirAlumno);
+		
 
 		// Si la consulta se abrio desde el menu, solamente desactivamos los campos:
 		activarCampos(false);
@@ -137,30 +141,29 @@ public class ConsultarAlumnoControlador {
 
 		// Ingresamos la forma en que puede buscar a un alumno el usuario
 		ObservableList<String> items = FXCollections.observableArrayList();
-
-		// Agregamos los cursos|
 		items.addAll("Id", "Carnet");
 
 		comboBuscarPor.setItems(items);
 		comboBuscarPor.setEditable(false);
 		comboBuscarPor.setVisibleRowCount(5);
-
 	}
 
-	private void inicializarConsulta(String id) {
-
-		// ESTO ES SOLO UNA PRUEBA
-		textNombre.setText("Has accedido desde el Reportes");
-		// Fin de la prueba.
-
-		// Realizar consulta
-
-		// Obtener datos de la consulta
-
-		// Setear los datos en los Text field
+	/**
+	 * Inserta los datos del alumno seleccionado en la tabla de reportes.
+	 * @param recibirAlumno
+	 */
+	private void inicializarDatos(ModeloAlumno recibirAlumno) {
+		// Seteamos los datos
+		textId.setText(recibirAlumno.getId());
+		textCarnet.setText(recibirAlumno.getCarnet());
+		textNombre.setText(recibirAlumno.getNombre());
+		textCurso.setText(recibirAlumno.getCurso());
 
 		// Desactivar la edicion de los campos
 		activarCampos(false);
+		
+		// Activamos botones
+		deshabilitarBotones(false);
 	}
 
 	/**
@@ -174,7 +177,9 @@ public class ConsultarAlumnoControlador {
 		textCurso.setEditable(valor);
 	}
 
-	
+	/**
+	 * Elimina a un alumno
+	 */
 	private void eliminarAlumno() {
 		String mensaje = "�Est� seguro de eliminar este alumno?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Eliminar alumno")) {
@@ -187,11 +192,24 @@ public class ConsultarAlumnoControlador {
 		}
 	}
 
+	/**
+	 * Guarda los cambios realizados al editar
+	 */
 	private void guardarCambios() {
 		String mensaje = "�Est� seguro de querer guardar los cambios?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Guardar cambios")) {
 
 			miAlerta.mensajeExito("Alumno actualizado exit�samente.", "Exito");
 		}
+	}
+	
+	/**
+	 * Deshabilita los botones de acuerdo de donde provengan los datos.
+	 * @param valor
+	 */
+	private void deshabilitarBotones(boolean valor) {
+		btnEditar.setDisable(valor);
+		btnEliminar.setDisable(valor);
+		btnGuardar.setDisable(valor);
 	}
 }

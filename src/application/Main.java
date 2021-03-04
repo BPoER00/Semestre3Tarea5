@@ -3,6 +3,7 @@ package application;
 import java.io.IOException;
 
 import application.controlador.ConsultarAlumnoControlador;
+import application.modelo.ModeloAlumno;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Modality;
@@ -76,7 +77,7 @@ public class Main extends Application {
 	/**
 	 * Abre una nueva ventana para consultar a un alumno
 	 */
-	public void abrirConsultas(String id) {
+	public void abrirConsultas(ModeloAlumno miAlumno) {
 		try {
 			// Cargamos el archivo
 			FXMLLoader loader = new FXMLLoader();
@@ -88,7 +89,7 @@ public class Main extends Application {
 			// Id vacio = Se esta abriendo desde el menu.
 			// Id con el ID = Se esta abriendo desde el bot�n Consultar de Reporte.
 			ConsultarAlumnoControlador controlador = loader.getController();
-			controlador.initialize(id);
+			controlador.initialize(miAlumno);
 
 			// Mostramos la esceha
 			Stage ventanaConsultas = new Stage();

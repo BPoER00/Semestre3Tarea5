@@ -2,10 +2,16 @@ package application.modelo;
 
 import java.util.Optional;
 
+import javafx.event.EventHandler;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DialogPane;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonBar.ButtonData;
 import javafx.scene.image.Image;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 
 public class AlertasPersonalizadas {
@@ -48,7 +54,7 @@ public class AlertasPersonalizadas {
 	/**
 	 * Genera un mensaje de confirmacion antes de llevar a cabo una accion.
 	 * 
-	 * @param mensaje Realiar en forma de pregunta.
+	 * @bparam mensaje Realiar en forma de pregunta.
 	 * @param title
 	 * @return Yes = true, No = false
 	 */
@@ -56,11 +62,33 @@ public class AlertasPersonalizadas {
 		Alert alert = new Alert(AlertType.WARNING, mensaje, ButtonType.YES, ButtonType.NO);
 		alert.setTitle(title);
 		alert.setHeaderText(null);
-		Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-		stage.getIcons().add(new Image("application/recursos/icono.png")); // Agregamos icono
-		Optional<ButtonType> result = alert.showAndWait();
+		alert.getButtonTypes().clear();
+		alert.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
 
-		return result.get() == ButtonType.YES;
+		// Con este trozo de código logramos que el enter sepa que botón se está presionando
+		EventHandler<KeyEvent> fireOnEnter = event -> {
+		    if (KeyCode.ENTER.equals(event.getCode()) 
+		            && event.getTarget() instanceof Button) {
+		        ((Button) event.getTarget()).fire();
+		    }
+		};
+		
+		DialogPane dialogPane = alert.getDialogPane();
+		dialogPane.getButtonTypes().stream()
+		        .map(dialogPane::lookupButton)
+		        .forEach(button ->
+		                button.addEventHandler(
+		                        KeyEvent.KEY_PRESSED,
+		                        fireOnEnter
+		                )
+		        );
+		
+		Optional<ButtonType> result = alert.showAndWait();
+		
+		if(result.get() == ButtonType.YES)
+			return true;
+		
+		return false;
 	}
 
 }
