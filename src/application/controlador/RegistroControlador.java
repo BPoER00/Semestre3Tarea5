@@ -3,7 +3,9 @@ package application.controlador;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import Conexion.Consultas;
 import application.modelo.AlertasPersonalizadas;
+import application.modelo.ModeloAlumno;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -124,23 +126,30 @@ public class RegistroControlador {
 	}
 
 	/**
-	 * Pregunta al usuario si está seguro de guardar al alumno en la base de datos.
+	 * Pregunta al usuario si estï¿½ seguro de guardar al alumno en la base de datos.
 	 */
 	private void guardarAlumno() {
-		String mensaje = "¿Está seguro de querer guardar?";
+		String mensaje = "ï¿½Estï¿½ seguro de querer guardar?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Guardar")) {
 
-			// TODO: Si presiona sí, pues ejecutar el Insert.
+			Consultas guardarDB = new Consultas();
+			
+			ModeloAlumno alumno = new ModeloAlumno();
+			alumno.setCarnet(textCarnet.getText());
+			alumno.setNombre(textNombre.getText());
+			alumno.setCurso(comboCurso.getValue());
+			
+			guardarDB.Guardar(alumno);
 
-			miAlerta.mensajeExito("Alumno guardado exitósamente.", "Éxito");
+			miAlerta.mensajeExito("Alumno guardado exitï¿½samente.", "ï¿½xito");
 		}
 	}
 
 	/**
-	 * Pregunta al usuario si está seguro de querer cerrar la ventana de registros.
+	 * Pregunta al usuario si estï¿½ seguro de querer cerrar la ventana de registros.
 	 */
 	private void cerrarRegistro() {
-		String mensaje = "¿Está seguro de querer cerrar la pantalla de registro?";
+		String mensaje = "ï¿½Estï¿½ seguro de querer cerrar la pantalla de registro?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Salir")) {
 			Stage cerrar = (Stage) btnSalir.getScene().getWindow();
 			cerrar.close();

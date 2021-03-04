@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import Conexion.Consultas;
 import application.Main;
 import application.modelo.ModeloAlumno;
 import javafx.collections.FXCollections;
@@ -79,6 +80,8 @@ public class ReporteControlador {
 		List<ModeloAlumno> modelo = new ArrayList<ModeloAlumno>();
 		// modelo = baseDeDatos.consultar(); --- Consultar toda la base de datos para obtener datos.
 		// Prueba
+		Consultas obtenerDatos = new Consultas();
+		modelo = obtenerDatos.consultarTabla();
 		modelo.add(new ModeloAlumno("1", "1190", "Fabi�n", "Sistemas"));
 		agregarDatosATabla(modelo);
 		agregarFiltros(modelo);
