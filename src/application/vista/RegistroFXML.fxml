@@ -59,7 +59,7 @@
                   </AnchorPane>
                   <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <children>
-                        <ComboBox fx:id="comboCurso" layoutY="34.0" onKeyPressed="#teclaPresionada" prefWidth="150.0" promptText="Seleccione" />
+                        <ComboBox fx:id="comboCurso" layoutY="34.0" onKeyPressed="#teclaPresionada" prefHeight="28.0" prefWidth="249.0" promptText="Seleccione" />
                         <Label fx:id="labelErrorCurso" layoutY="61.0" prefHeight="18.0" prefWidth="214.0" text="Label de errores" textFill="RED" />
                      </children>
                   </AnchorPane>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -10,8 +11,9 @@
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="550.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controlador.ReporteControlador">
+<AnchorPane prefHeight="575.0" prefWidth="950.0" styleClass="fondoReporte" stylesheets="@estilos.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.controlador.ReporteControlador">
    <children>
       <GridPane layoutX="146.0" layoutY="172.0" prefHeight="550.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <columnConstraints>
@@ -36,15 +38,31 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
             </TableView>
-            <Label text="Reporte" />
-            <Label text="Buscar" GridPane.rowIndex="1" />
-            <TextField fx:id="textBuscar" promptText="Escriba aquí..." GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Button fx:id="btnConsultar" mnemonicParsing="false" onAction="#clickConsultar" text="Consultar" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
+            <Label text="Reporte" textFill="WHITE">
+               <font>
+                  <Font size="24.0" />
+               </font></Label>
+            <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="Buscar" textFill="WHITE" GridPane.rowIndex="1" />
+            <TextField fx:id="textBuscar" promptText="Escriba aquí..." style="-fx-background-color: white;" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="20.0" right="20.0" />
+               </GridPane.margin></TextField>
+            <AnchorPane GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <children>
+                  <Button fx:id="btnConsultar" layoutX="312.20000000000005" layoutY="8.0" mnemonicParsing="false" onAction="#clickConsultar" styleClass="botones-ejecucion" text="Consultar Alumno" textFill="WHITE" AnchorPane.rightAnchor="0.5999999999999659">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
       </GridPane>
    </children>
 </AnchorPane>

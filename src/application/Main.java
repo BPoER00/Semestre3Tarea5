@@ -22,8 +22,8 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 
 		this.primaryStage = primaryStage;
-		this.primaryStage.setTitle("Control de datos ddd");
-
+		this.primaryStage.setTitle("Control de datos UMG");
+		this.primaryStage.setMaximized(true);
 		iniciar();
 	}
 
@@ -85,8 +85,8 @@ public class Main extends Application {
 
 			// Accedemos al controlador para inicializar los textfields, seg�n sera el
 			// Id:
-			// Id vacio = Se est� abriendo desde el men�.
-			// Id con el ID = Se est� abriendo desde el bot�n Consultar de Reporte.
+			// Id vacio = Se esta abriendo desde el menu.
+			// Id con el ID = Se esta abriendo desde el bot�n Consultar de Reporte.
 			ConsultarAlumnoControlador controlador = loader.getController();
 			controlador.initialize(id);
 
@@ -122,7 +122,7 @@ public class Main extends Application {
 			ventanaReportes.setTitle("Reporte");
 			ventanaReportes.initModality(Modality.APPLICATION_MODAL);
 			ventanaReportes.initOwner(primaryStage);
-			ventanaReportes.setResizable(false);
+//			ventanaReportes.setResizable(false);
 			Scene scene = new Scene(page);
 			ventanaReportes.setScene(scene);
 
