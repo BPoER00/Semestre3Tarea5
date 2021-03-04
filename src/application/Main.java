@@ -94,7 +94,7 @@ public class Main extends Application {
 			// Mostramos la esceha
 			Stage ventanaConsultas = new Stage();
 			ventanaConsultas.getIcons().add(new Image("application/recursos/icono.png"));
-			ventanaConsultas.setTitle("Reporte");
+			ventanaConsultas.setTitle("Consultar alumno");
 			ventanaConsultas.initModality(Modality.APPLICATION_MODAL);
 			ventanaConsultas.initOwner(primaryStage);
 			ventanaConsultas.setResizable(false);
