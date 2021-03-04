@@ -33,6 +33,9 @@ public class ConsultarAlumnoControlador {
 	private Button btnEditar;
 
 	@FXML
+	private Button btnBuscar;
+
+	@FXML
 	private TextField textId;
 
 	@FXML
@@ -50,6 +53,11 @@ public class ConsultarAlumnoControlador {
 	private AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
 
 	/* =========== Comandos para los botones =========== */
+	@FXML
+	void clickBuscar(ActionEvent event) {
+
+	}
+
 	@FXML
 	void clickEditar(ActionEvent event) {
 		activarCampos(true);
@@ -85,6 +93,13 @@ public class ConsultarAlumnoControlador {
 		if (event.getCode().equals(KeyCode.ENTER)) {
 			guardarCambios();
 			activarCampos(false);
+		}
+	}
+
+	@FXML
+	void enterBtnBuscar(KeyEvent event) {
+		if (event.getCode().equals(KeyCode.ENTER)) {
+			System.out.println("Has presionado la tecla enter en Buscar...");
 		}
 	}
 
@@ -160,32 +175,32 @@ public class ConsultarAlumnoControlador {
 	}
 
 	/**
-	 * Le pregunta al usuario si está seguro de eliminar al alumno. Si confirma, se
-	 * eliminará al alumno de la bsae de datos.
+	 * Le pregunta al usuario si estï¿½ seguro de eliminar al alumno. Si confirma, se
+	 * eliminarï¿½ al alumno de la bsae de datos.
 	 */
 	private void eliminarAlumno() {
-		String mensaje = "¿Está seguro de eliminar este alumno?";
+		String mensaje = "ï¿½Estï¿½ seguro de eliminar este alumno?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Eliminar alumno")) {
 
-			// TODO: Si presiona sí, pues ejecutar la eliminación.
+			// TODO: Si presiona sï¿½, pues ejecutar la eliminaciï¿½n.
 
-			miAlerta.mensajeExito("Alumno eliminado exitósamente.", "Exito");
+			miAlerta.mensajeExito("Alumno eliminado exitï¿½samente.", "Exito");
 			Stage cerrar = (Stage) btnEliminar.getScene().getWindow();
 			cerrar.close();
 		}
 	}
 
 	/**
-	 * Pregunta al usuario si está seguro de guardar los cambios antes de ejecutar
-	 * una actualización a la base de datos
+	 * Pregunta al usuario si estï¿½ seguro de guardar los cambios antes de ejecutar
+	 * una actualizaciï¿½n a la base de datos
 	 */
 	private void guardarCambios() {
-		String mensaje = "¿Está seguro de querer guardar los cambios?";
+		String mensaje = "ï¿½Estï¿½ seguro de querer guardar los cambios?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Guardar cambios")) {
 
-			// TODO: Si presiona sí, pues ejecutar la actualización.
+			// TODO: Si presiona sï¿½, pues ejecutar la actualizaciï¿½n.
 
-			miAlerta.mensajeExito("Alumno actualizado exitósamente.", "Exito");
+			miAlerta.mensajeExito("Alumno actualizado exitï¿½samente.", "Exito");
 		}
 	}
 }
