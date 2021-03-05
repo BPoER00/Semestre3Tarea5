@@ -40,10 +40,10 @@ public class PadreControlador {
 				+ "Ingenieria en Sistemas\n"
 				+ "Curso:\t\t Programacion III\n"
 				+ "Ciclo:\t\t V\n"
-				+ "Catedratico:\t Ing. Vinicio Rom�n\n"
+				+ "Catedratico:\t Ing. Vinicio Román\n"
 				+ "Grupo:\n"
-				+ "Alumno:\t\t Bryan Emanuel Paz Ram�rez\nCarnet:\t\t 1190-19-3929\n"
-				+ "Alumno:\t\t Luis Renato Granados Og�ldez\nCarnet:\t\t 1190-19-4642\n"
+				+ "Alumno:\t\t Bryan Emanuel Paz Ramírez\nCarnet:\t\t 1190-19-3929\n"
+				+ "Alumno:\t\t Luis Renato Granados Ogáldez\nCarnet:\t\t 1190-19-4642\n"
 				+ "Fecha:\t\t 06/03/2021";
 		
 		Alert alert = new Alert(AlertType.INFORMATION, mensaje, ButtonType.OK);
