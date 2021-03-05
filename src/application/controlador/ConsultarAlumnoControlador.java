@@ -104,6 +104,7 @@ public class ConsultarAlumnoControlador {
 	@FXML
 	void enterBtnBuscar(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {
+                        Buscar();
 			System.out.println("Has presionado la tecla enter en Buscar...");
 		}
 	}
@@ -112,6 +113,7 @@ public class ConsultarAlumnoControlador {
 	@FXML
 	void teclaPresionadaBuscar(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {
+                    Buscar();
 			// Hacer referencia al metodo "Buscar Alumno" o lo que quieras
 			System.out.println("Has presionado la tecla enter en Buscar...");
 		}
@@ -219,10 +221,11 @@ public class ConsultarAlumnoControlador {
         
         public void Eliminar(){
             String dato = comboBuscarPor.getValue();
-            if(!dato.equals("")){
+            String enviar = textBuscar.getText();
+            if(!enviar.equals("")){
                 Consultas Eliminar = new Consultas();
                 ModeloAlumno alumno = new ModeloAlumno();
-                Eliminar.Eliminar(alumno, dato);
+                Eliminar.Eliminar(dato, enviar);
             }else{
                 AlertasPersonalizadas alert = new AlertasPersonalizadas();
                 alert.mensajeError("Primero llene los campos y vuelva a intentar", "Advertencia");
@@ -230,10 +233,33 @@ public class ConsultarAlumnoControlador {
         }
         
         public void Buscar(){
-            
+            String dato = comboBuscarPor.getValue();
+            String enviar = textBuscar.getText();
+            if(!enviar.equals("")){
+                Consultas Buscar = new Consultas();
+                ModeloAlumno alumno = new ModeloAlumno();
+                //Buscar.Busar(alumno, dato, enviar);
+            }else{
+                AlertasPersonalizadas alert = new AlertasPersonalizadas();
+                alert.mensajeError("Primero llene los campos y vuelva a intentar", "Advertencia");
+            }
         }
         
         public void Editar(){
-            
+            String dato = comboBuscarPor.getValue();
+            String enviar = textBuscar.getText();
+            if(!enviar.equals("")){
+                Consultas Eliminar = new Consultas();
+                ModeloAlumno alumno = new ModeloAlumno();
+                if(dato.equals("Id")){
+                    alumno.setId(enviar);
+                }else{
+                    alumno.setCarnet(enviar);
+                }
+                Eliminar.Eliminar(dato, enviar);
+            }else{
+                AlertasPersonalizadas alert = new AlertasPersonalizadas();
+                alert.mensajeError("Primero llene los campos y vuelva a intentar", "Advertencia");
+            }
         }
 }

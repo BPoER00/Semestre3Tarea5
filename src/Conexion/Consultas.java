@@ -125,17 +125,18 @@ public class Consultas {
             }
         }
         
-        public void Busar(ModeloAlumno alumno, String Seleccion) {
+        public List<ModeloAlumno> Busar(String Seleccion, String Valor) {
+                boolean encontrado = false;
+		List<ModeloAlumno> lista = new ArrayList<>();
+            
                 String sql;
-                String Buscar;
                 if(Seleccion.equals("Id")){
                     sql = "SELECT * FROM DatosEstudiante WHERE Id = ?";
-                    Buscar = alumno.getId();
+                    
                 }else{
                     sql = "SELECT * FROM DatosEstudiante WHERE Carne = ?";
-                    Buscar = alumno.getCarnet();
+                    
                 }
-		boolean encontrado = false;
 
 		// Instanciamos un objeto para conectarnos a la base de datos:
 		ConexionDB conexion = new ConexionDB();
@@ -148,7 +149,7 @@ public class Consultas {
 		try {
 			PreparedStatement sentencia = CONEXION.prepareStatement(sql);
                         
-                        sentencia.setString(1, Buscar);
+                        sentencia.setString(1, Valor);
                         
 			ResultSet res = sentencia.executeQuery();
 
@@ -179,23 +180,22 @@ public class Consultas {
 		}
 		if (!encontrado) {
 			String mensaje = "No hay alumnos por mostrar.";
-			// JOptionPane.showMessageDialog(null, mensaje, "Error de búsqueda",
-			// JOptionPane.ERROR_MESSAGE);
 			AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
 			miAlerta.mensajeError(mensaje, "Error");
 		}
+                
+		return lista.isEmpty() ? new ArrayList<>() : lista;
 		
 	}
 
-        public void Eliminar(ModeloAlumno alumno, String Seleccion){
+        public void Eliminar(String Seleccion, String Valor){
                 String sql;
-                String Eliminar;
                 if(Seleccion.equals("Id")){
                     sql = "DELETE FROM DatosEstudiante WHERE Id = ?";
-                    Eliminar = alumno.getId();
+                    
                 }else{
                     sql = "DELETE FROM DatosEstudiante WHERE Carne = ?";
-                    Eliminar = alumno.getCarnet();
+                    
                 }
                 
                 try{
@@ -204,7 +204,7 @@ public class Consultas {
                     
                     ps = conn.prepareStatement(sql);
                     
-                    ps.setString(1, Eliminar);
+                    ps.setString(1, Valor);
                     
                     ResultSet res = ps.executeQuery();
                     if(!res.equals(null)){
@@ -221,23 +221,21 @@ public class Consultas {
                 }
         }
         
-        public void Editar(ModeloAlumno alumno, String Seleccion){
+        public void Editar(ModeloAlumno alumno, String Seleccion, String Valor){
                 String sql;
-                String Editar;
                 if(Seleccion.equals("Id")){
                     sql = "UPDATE DatoEstudiantes SET "
-                            + "Carne = ? "
-                            + " Nombre = ? "
+                            + "Carne = ? , "
+                            + " Nombre = ? ,"
                             + " Curso = ? "
                             + " WHERE Id = ?";
-                    Editar = alumno.getId();
+                    
                 }else{
                     sql = "UPDATE DatoEstudiantes SET "
-                            + "Carne = ? "
-                            + " Nombre = ? "
+                            + "Carne = ? , "
+                            + " Nombre = ? ,"
                             + " Curso = ? "
-                            + " WHERE Id = ?";
-                    Editar = alumno.getCarnet();
+                            + " WHERE Id = ?";                    
                 }
                 
                 try{
@@ -248,15 +246,9 @@ public class Consultas {
                     ps.setString(1, alumno.getCarnet());
                     ps.setString(2, alumno.getNombre());
                     ps.setString(3, alumno.getCurso());
-                    ps.setString(4, Editar);
+                    ps.setString(4, Valor);
                     
-                    ResultSet rs = ps.executeQuery();
-                    
-                    if(!rs.equals(null)){
-                        System.out.println("Datos Guardados Correctamente");
-                    }else{
-                        System.out.println("Error al guardar los datos");
-                    }
+                    ps.executeUpdate();
                     
                     conn.close();
                     
