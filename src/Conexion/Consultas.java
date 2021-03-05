@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -124,10 +125,17 @@ public class Consultas {
             }
         }
         
-        public List<ModeloAlumno> Busar() {
-
+        public void Busar(ModeloAlumno alumno, String Seleccion) {
+                String sql;
+                String Buscar;
+                if(Seleccion.equals("Id")){
+                    sql = "SELECT * FROM DatosEstudiante WHERE Id = ?";
+                    Buscar = alumno.getId();
+                }else{
+                    sql = "SELECT * FROM DatosEstudiante WHERE Carne = ?";
+                    Buscar = alumno.getCarnet();
+                }
 		boolean encontrado = false;
-		List<ModeloAlumno> lista = new ArrayList<>();
 
 		// Instanciamos un objeto para conectarnos a la base de datos:
 		ConexionDB conexion = new ConexionDB();
@@ -135,12 +143,13 @@ public class Consultas {
 		// Establecemos conexión:
 		Connection CONEXION = conexion.conexion();
 
-		// Armamos la consulta
-		String SQL = "SELECT * FROM DatosEstudiante WHERE = ";
 
 		// Creamos la sentencia:
 		try {
-			PreparedStatement sentencia = CONEXION.prepareStatement(SQL);
+			PreparedStatement sentencia = CONEXION.prepareStatement(sql);
+                        
+                        sentencia.setString(1, Buscar);
+                        
 			ResultSet res = sentencia.executeQuery();
 
 			// Si se llega ejecutar, entonces nos dará los datos del cliente:
@@ -156,7 +165,6 @@ public class Consultas {
 				miAlumno.setCurso(res.getString("Curso"));
 
 				// Lo agregamos a la lista:
-				lista.add(miAlumno);
 			}
 
 			// Cerramos la conexión
@@ -176,7 +184,85 @@ public class Consultas {
 			AlertasPersonalizadas miAlerta = new AlertasPersonalizadas();
 			miAlerta.mensajeError(mensaje, "Error");
 		}
-		return lista.isEmpty() ? new ArrayList<>() : lista;
+		
 	}
 
+        public void Eliminar(ModeloAlumno alumno, String Seleccion){
+                String sql;
+                String Eliminar;
+                if(Seleccion.equals("Id")){
+                    sql = "DELETE FROM DatosEstudiante WHERE Id = ?";
+                    Eliminar = alumno.getId();
+                }else{
+                    sql = "DELETE FROM DatosEstudiante WHERE Carne = ?";
+                    Eliminar = alumno.getCarnet();
+                }
+                
+                try{
+                    ConexionDB conectar = new ConexionDB();
+                    Connection conn = conectar.conexion();
+                    
+                    ps = conn.prepareStatement(sql);
+                    
+                    ps.setString(1, Eliminar);
+                    
+                    ResultSet res = ps.executeQuery();
+                    if(!res.equals(null)){
+                        System.out.println("Datos Guardados Correctamente");
+                    }else{
+                        System.out.println("Error al guardar los datos");
+                    }
+                    
+                    conn.close();
+                    
+                }catch(Exception e){
+                    AlertasPersonalizadas alert = new AlertasPersonalizadas();
+                    alert.mensajeError("Error: "+e, "Advertencia");
+                }
+        }
+        
+        public void Editar(ModeloAlumno alumno, String Seleccion){
+                String sql;
+                String Editar;
+                if(Seleccion.equals("Id")){
+                    sql = "UPDATE DatoEstudiantes SET "
+                            + "Carne = ? "
+                            + " Nombre = ? "
+                            + " Curso = ? "
+                            + " WHERE Id = ?";
+                    Editar = alumno.getId();
+                }else{
+                    sql = "UPDATE DatoEstudiantes SET "
+                            + "Carne = ? "
+                            + " Nombre = ? "
+                            + " Curso = ? "
+                            + " WHERE Id = ?";
+                    Editar = alumno.getCarnet();
+                }
+                
+                try{
+                    ConexionDB conectar = new ConexionDB();
+                    Connection conn = conectar.conexion();
+                    
+                    ps = conn.prepareStatement(sql);
+                    ps.setString(1, alumno.getCarnet());
+                    ps.setString(2, alumno.getNombre());
+                    ps.setString(3, alumno.getCurso());
+                    ps.setString(4, Editar);
+                    
+                    ResultSet rs = ps.executeQuery();
+                    
+                    if(!rs.equals(null)){
+                        System.out.println("Datos Guardados Correctamente");
+                    }else{
+                        System.out.println("Error al guardar los datos");
+                    }
+                    
+                    conn.close();
+                    
+                }catch(Exception e){
+                    AlertasPersonalizadas alert = new AlertasPersonalizadas();
+                    alert.mensajeError("Error: "+e, "Advertencia");
+                }
+        }
 }
