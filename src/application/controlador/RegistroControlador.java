@@ -103,16 +103,15 @@ public class RegistroControlador {
 		// Agregamos los cursos|
 		items.addAll("Administraci�n de tecnolog�as de informaci�n", "Algebra lineal", "Algoritmos",
 				"An�lisis de sistemas I", "An�lisis de sistemas II", "Arquitectura de computadoras I",
-				"Arquitectura de computadoras II", "Aseguramiento de la calidad del software",
-				"Aut�matas y lenguajes", "Base de datos I", "Base de datos II", "C�lculo I", "C�lculo II",
-				"Compiladores", "Contabilidad I", "Contabilidad II", "Derecho Inform�tico", "Desarrollo Humano",
-				"Desarrollo Web", "Electr�nica anal�gica", "Electr�nica digital", "Emprendedores de negocios",
-				"Estad�stica I", "Estad�stica II", "�tica profesional", "F�sica I", "F�sica II",
-				"Inteligencia artificial", "Intenier�a de software", "Introducci�n a los sistemas",
-				"Investigaci�n de operaciones", "L�gica de sistemas", "Matem�tica Discreta",
-				"Metodo de la Investigaci�n", "M�todos num�ricos", "Microeconom�a", "Prec�lculo",
-				"Proceso Administrativo", "Programaci�n I", "Programaci�n II", "Programaci�n III",
-				"Proyecto de graduaci�n I", "Proyecto de graduaci�n II", "Redes de computadoras I",
+				"Arquitectura de computadoras II", "Aseguramiento de la calidad del software", "Aut�matas y lenguajes",
+				"Base de datos I", "Base de datos II", "C�lculo I", "C�lculo II", "Compiladores", "Contabilidad I",
+				"Contabilidad II", "Derecho Inform�tico", "Desarrollo Humano", "Desarrollo Web",
+				"Electr�nica anal�gica", "Electr�nica digital", "Emprendedores de negocios", "Estad�stica I",
+				"Estad�stica II", "�tica profesional", "F�sica I", "F�sica II", "Inteligencia artificial",
+				"Intenier�a de software", "Introducci�n a los sistemas", "Investigaci�n de operaciones",
+				"L�gica de sistemas", "Matem�tica Discreta", "Metodo de la Investigaci�n", "M�todos num�ricos",
+				"Microeconom�a", "Prec�lculo", "Proceso Administrativo", "Programaci�n I", "Programaci�n II",
+				"Programaci�n III", "Proyecto de graduaci�n I", "Proyecto de graduaci�n II", "Redes de computadoras I",
 				"Redes de computadoras II", "Seguridad y auditoria de Sistemas",
 				"Seminarios de tecnolog�as de informaci�n", "Sistemas operativos", "Sistemas operativos II",
 				"Telecomunicaciones");
@@ -126,19 +125,23 @@ public class RegistroControlador {
 	 * Pregunta al usuario si est� seguro de guardar al alumno en la base de datos.
 	 */
 	private void guardarAlumno() {
-		String mensaje = "�Est� seguro de querer guardar?";
-		if (miAlerta.mensajeConfirmar(mensaje, "Guardar")) {
+		String mensaje = "¿Está seguro de querer guardar?";
+		System.out.println(comboCurso.getValue());
+		if (miAlerta.mensajeConfirmar(mensaje, "Guardar") && validarCampos()) {
 
 			Consultas guardarDB = new Consultas();
-			
+
 			ModeloAlumno alumno = new ModeloAlumno();
 			alumno.setCarnet(textCarnet.getText());
 			alumno.setNombre(textNombre.getText());
 			alumno.setCurso(comboCurso.getValue());
-			
-			if(guardarDB.Guardar(alumno))
+
+			if (guardarDB.Guardar(alumno))
 				miAlerta.mensajeExito("Alumno guardado exit�samente.", "�xito");
-				
+		}
+
+		if (!validarCampos()) {
+			miAlerta.mensajeError("Por favor, llene los campos que se le piden.", "Error");
 		}
 	}
 
@@ -146,10 +149,23 @@ public class RegistroControlador {
 	 * Pregunta al usuario si est� seguro de querer cerrar la ventana de registros.
 	 */
 	private void cerrarRegistro() {
-		String mensaje = "�Est� seguro de querer cerrar la pantalla de registro?";
+		String mensaje = "¿Está seguro de querer cerrar la pantalla de registro?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Salir")) {
 			Stage cerrar = (Stage) btnSalir.getScene().getWindow();
 			cerrar.close();
 		}
+	}
+
+	private boolean validarCampos() {
+		if (textCarnet.getText().isEmpty())
+			return false;
+
+		if (textNombre.getText().isEmpty())
+			return false;
+
+		if (comboCurso.getValue() == null)
+			return false;
+
+		return true;
 	}
 }
