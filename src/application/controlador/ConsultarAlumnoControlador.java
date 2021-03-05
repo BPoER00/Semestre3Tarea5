@@ -2,6 +2,8 @@ package application.controlador;
 
 import Conexion.Consultas;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import application.modelo.AlertasPersonalizadas;
@@ -48,7 +50,7 @@ public class ConsultarAlumnoControlador {
 
 	@FXML
 	private TextField textCurso;
-	
+
 	@FXML
 	private TextField textBuscar;
 
@@ -60,7 +62,7 @@ public class ConsultarAlumnoControlador {
 	/* =========== Comandos para los botones =========== */
 	@FXML
 	void clickBuscar(ActionEvent event) {
-		
+		Buscar();
 	}
 
 	@FXML
@@ -76,7 +78,6 @@ public class ConsultarAlumnoControlador {
 	@FXML
 	void clickGuardar(ActionEvent event) {
 		guardarCambios();
-		activarCampos(false);
 	}
 
 	@FXML
@@ -97,14 +98,13 @@ public class ConsultarAlumnoControlador {
 	void enterBtnGuardar(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {
 			guardarCambios();
-			activarCampos(false);
 		}
 	}
 
 	@FXML
 	void enterBtnBuscar(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {
-			System.out.println("Has presionado la tecla enter en Buscar...");
+			Buscar();
 		}
 	}
 
@@ -112,6 +112,7 @@ public class ConsultarAlumnoControlador {
 	@FXML
 	void teclaPresionadaBuscar(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {
+			Buscar();
 			// Hacer referencia al metodo "Buscar Alumno" o lo que quieras
 			System.out.println("Has presionado la tecla enter en Buscar...");
 		}
@@ -120,21 +121,19 @@ public class ConsultarAlumnoControlador {
 	@FXML
 	void teclaPresionadaCampos(KeyEvent event) {
 		if (event.getCode().equals(KeyCode.ENTER)) {
-			// Hacer referencia al metodo "Guardar" o lo que quieras
-			System.out.println("Has presionado la tecla enter entre los campos...");
+			guardarCambios();
 		}
 	}
 
 	/* =========== Inicializador =========== */
 	@FXML
 	public void initialize(ModeloAlumno recibirAlumno) {
-		
+
 		deshabilitarBotones(true);
 
 		// Si la consulta se abrio desde la tabla de reportes, ejecutamos:
 		if (!recibirAlumno.getId().equals(""))
 			inicializarDatos(recibirAlumno);
-		
 
 		// Si la consulta se abrio desde el menu, solamente desactivamos los campos:
 		activarCampos(false);
@@ -154,6 +153,7 @@ public class ConsultarAlumnoControlador {
 
 	/**
 	 * Inserta los datos del alumno seleccionado en la tabla de reportes.
+	 * 
 	 * @param recibirAlumno
 	 */
 	private void inicializarDatos(ModeloAlumno recibirAlumno) {
@@ -165,7 +165,7 @@ public class ConsultarAlumnoControlador {
 
 		// Desactivar la edicion de los campos
 		activarCampos(false);
-		
+
 		// Activamos botones
 		deshabilitarBotones(false);
 	}
@@ -202,13 +202,16 @@ public class ConsultarAlumnoControlador {
 	private void guardarCambios() {
 		String mensaje = "¿Está seguro de querer guardar los cambios?";
 		if (miAlerta.mensajeConfirmar(mensaje, "Guardar cambios")) {
-
-			miAlerta.mensajeExito("Alumno actualizado exitósamente.", "Éxito");
+			if (Editar()) {
+				miAlerta.mensajeExito("Alumno actualizado exitósamente.", "Éxito");
+				activarCampos(false);
+			}
 		}
 	}
-	
+
 	/**
 	 * Deshabilita los botones de acuerdo de donde provengan los datos.
+	 * 
 	 * @param valor
 	 */
 	private void deshabilitarBotones(boolean valor) {
@@ -216,24 +219,58 @@ public class ConsultarAlumnoControlador {
 		btnEliminar.setDisable(valor);
 		btnGuardar.setDisable(valor);
 	}
-        
-        public void Eliminar(){
-            String dato = comboBuscarPor.getValue();
-            if(!dato.equals("")){
-                Consultas Eliminar = new Consultas();
-                ModeloAlumno alumno = new ModeloAlumno();
-                Eliminar.Eliminar(alumno, dato);
-            }else{
-                AlertasPersonalizadas alert = new AlertasPersonalizadas();
-                alert.mensajeError("Primero llene los campos y vuelva a intentar", "Advertencia");
-            }
-        }
-        
-        public void Buscar(){
-            
-        }
-        
-        public void Editar(){
-            
-        }
+
+	/**
+	 * Elimina al alumno de acuerdo al Id
+	 */
+	public void Eliminar() {
+		Consultas eliminarDato = new Consultas();
+		eliminarDato.Eliminar(textId.getText());
+	}
+
+	/**
+	 * Busca dentro de la base de datos ya sea con Id o carnet al alumno consultado.
+	 */
+	public void Buscar() {
+		String dato = comboBuscarPor.getValue();
+		String enviar = textBuscar.getText();
+		if (!enviar.equals("")) {
+			Consultas buscar = new Consultas();
+			List<ModeloAlumno> alumno = new ArrayList<ModeloAlumno>();
+			alumno = buscar.buscar(dato, enviar);
+
+			// Seteamos los datos
+			textId.setText(alumno.get(0).getId());
+			textCarnet.setText(alumno.get(0).getCarnet());
+			textNombre.setText(alumno.get(0).getNombre());
+			textCurso.setText(alumno.get(0).getCurso());
+
+			deshabilitarBotones(false);
+
+		} else {
+			AlertasPersonalizadas alert = new AlertasPersonalizadas();
+			alert.mensajeError("Primero llene los campos y vuelva a intentar", "Advertencia");
+		}
+	}
+
+	/**
+	 * Actualiza los datos del alumno dentro de la base de datos.
+	 * @return
+	 */
+	public boolean Editar() {
+		try {
+			ModeloAlumno alumno = new ModeloAlumno();
+			alumno.setId(textId.getText());
+			alumno.setCarnet(textCarnet.getText());
+			alumno.setNombre(textNombre.getText());
+			alumno.setCurso(textCurso.getText());
+			// Actualizamos
+			Consultas editar = new Consultas();
+			return editar.Editar(alumno);
+		} catch (Exception e) {
+			AlertasPersonalizadas alert = new AlertasPersonalizadas();
+			alert.mensajeError(e.getMessage(), "Error");
+		}
+		return false;
+	}
 }
